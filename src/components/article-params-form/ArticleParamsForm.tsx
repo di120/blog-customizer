@@ -95,7 +95,7 @@ export const ArticleParamsForm = (props: ArticleParamsFormProps) => {
 					< Select selected={paramsState.width} options={contentWidthArr} title="Ширина контента" onChange={(selected) => selectWidth(selected)} />
 					<div className={styles.bottomContainer}>
 						<Button title='Сбросить' htmlType='reset' type='clear' onClick={handleReset} />
-						<Button title='Применить' htmlType='reset' type='apply' onClick={(e) => handleSubmit(e)} />
+						<Button title='Применить' htmlType='submit' type='apply' onClick={(e) => handleSubmit(e)} />
 					</div>
 				</form>
 			</aside>
