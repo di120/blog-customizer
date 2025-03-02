@@ -1,6 +1,5 @@
 import { createRoot } from 'react-dom/client';
 import { StrictMode, CSSProperties, useState } from 'react';
-import clsx from 'clsx';
 
 import { Article } from './components/article/Article';
 import { ArticleParamsForm } from './components/article-params-form/ArticleParamsForm';
@@ -18,7 +17,7 @@ export type StyleSettings = {
 	fontColor: OptionType;
 	bgColor: OptionType;
 	width: OptionType;
-}
+};
 
 const App = () => {
 	const initialState: StyleSettings = {
@@ -26,32 +25,37 @@ const App = () => {
 		fontSize: defaultArticleState.fontSizeOption,
 		fontColor: defaultArticleState.fontColor,
 		bgColor: defaultArticleState.backgroundColor,
-		width: defaultArticleState.contentWidth
+		width: defaultArticleState.contentWidth,
 	};
 
-	const [state, setState] = useState(initialState);
+	const [articleState, setArticleState] = useState(initialState);
 
 	const resetStyle = () => {
-		setState(initialState);
-	}
+		setArticleState(initialState);
+	};
 
 	const updateStyle = (params: StyleSettings) => {
-		setState(params);
-	}
+		setArticleState(params);
+	};
 
 	return (
 		<main
-			className={clsx(styles.main)}
+			className={styles.main}
 			style={
 				{
-					'--font-family': state.font.value,
-					'--font-size': state.fontSize.value,
-					'--font-color': state.fontColor.value,
-					'--container-width': state.width.value,
-					'--bg-color': state.bgColor.value,
+					'--font-family': articleState.font.value,
+					'--font-size': articleState.fontSize.value,
+					'--font-color': articleState.fontColor.value,
+					'--container-width': articleState.width.value,
+					'--bg-color': articleState.bgColor.value,
 				} as CSSProperties
 			}>
-			<ArticleParamsForm state={state} initialState={initialState} reset={resetStyle} update={updateStyle} />
+			<ArticleParamsForm
+				state={articleState}
+				initialState={initialState}
+				reset={resetStyle}
+				update={updateStyle}
+			/>
 			<Article />
 		</main>
 	);
